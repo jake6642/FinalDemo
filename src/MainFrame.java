@@ -4,9 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
@@ -26,8 +24,6 @@ public class MainFrame extends JFrame {
 	JPanel panelSol;
 	JPanel panelMain;
 	JPanel panelCenter;
-	JComboBox<String> type;
-	JComboBox<String> algo;
 	String TYPE;
 	int[] arr;
 	int[][] mat;
@@ -114,11 +110,6 @@ public class MainFrame extends JFrame {
 		btnList.addActionListener(typeL);
 
 		slideNum = new JSlider();
-		type = new JComboBox<String>();
-		algo = new JComboBox<String>();
-
-		algo.addItem(Const.HEAP);
-		algo.addItem(Const.QUICK);
 
 		// frame state: size and close operation
 		setSize(600, 400);
@@ -127,8 +118,6 @@ public class MainFrame extends JFrame {
 		west.add(btnArray);
 		west.add(btnMat);
 		west.add(btnList);
-		panelSol.add(new JLabel("Solution"));
-		panelMain.add(new JLabel("Problem"), BorderLayout.NORTH);
 		panelCenter.add(panelProb);
 		panelCenter.add(panelSol);
 		panelMain.add(panelCenter, BorderLayout.CENTER);

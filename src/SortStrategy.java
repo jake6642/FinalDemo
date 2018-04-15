@@ -20,7 +20,19 @@ public class SortStrategy {
 			}
 			break;
 		case (Const.QUICK):
-			// new QuickSort();
+			switch (type) {
+			case Const.ARRAY:
+				new QuickSort(StructureFactory.getArray());
+				break;
+			case Const.MATRIX:
+				new QuickSort(StructureFactory.getMatrix());
+				break;
+			case Const.LIST:
+				new QuickSort(StructureFactory.getList());
+				break;
+			default:
+				break;
+			}
 			break;
 		case (Const.MERGE):
 			// new MergeSort();
@@ -37,7 +49,7 @@ public class SortStrategy {
 		case Const.MERGE:
 			// return MergeSort.getArray();
 		case Const.QUICK:
-			// return QuickSort.getArray();
+			return QuickSort.getArray();
 		default:
 			return null;
 		}
@@ -50,7 +62,7 @@ public class SortStrategy {
 		case Const.MERGE:
 			// return MergeSort.getMatrix();
 		case Const.QUICK:
-			// return QuickSort.getMatrix();
+			return QuickSort.getMatrix();
 		default:
 			return null;
 		}
@@ -63,7 +75,7 @@ public class SortStrategy {
 		case Const.MERGE:
 			// return MergeSort.getList();
 		case Const.QUICK:
-			// return QuickSort.getList();
+			return QuickSort.getList();
 		default:
 			return null;
 		}
