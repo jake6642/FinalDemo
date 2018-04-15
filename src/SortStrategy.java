@@ -35,7 +35,19 @@ public class SortStrategy {
 			}
 			break;
 		case (Const.MERGE):
-			// new MergeSort();
+			switch (type) {
+			case Const.ARRAY:
+				new MergeSort(StructureFactory.getArray());
+				break;
+			case Const.MATRIX:
+				new MergeSort(StructureFactory.getMatrix());
+				break;
+			case Const.LIST:
+				new MergeSort(StructureFactory.getList());
+				break;
+			default:
+				break;
+			}
 			break;
 		default:
 			break;
@@ -47,7 +59,7 @@ public class SortStrategy {
 		case Const.HEAP:
 			return HeapSort.getArray();
 		case Const.MERGE:
-			// return MergeSort.getArray();
+			return MergeSort.getArray();
 		case Const.QUICK:
 			return QuickSort.getArray();
 		default:
@@ -60,7 +72,7 @@ public class SortStrategy {
 		case Const.HEAP:
 			return HeapSort.getMatrix();
 		case Const.MERGE:
-			// return MergeSort.getMatrix();
+			return MergeSort.getMatrix();
 		case Const.QUICK:
 			return QuickSort.getMatrix();
 		default:
@@ -73,7 +85,7 @@ public class SortStrategy {
 		case Const.HEAP:
 			return HeapSort.getList();
 		case Const.MERGE:
-			// return MergeSort.getList();
+			return MergeSort.getList();
 		case Const.QUICK:
 			return QuickSort.getList();
 		default:

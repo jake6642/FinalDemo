@@ -28,7 +28,7 @@ public class MainFrame extends JFrame {
 	int[] arr;
 	int[][] mat;
 	LinkedList<Integer> lis;
-	int len = 5;
+	int len = 2;
 
 	public MainFrame() {
 		super("Algorithm Helper");

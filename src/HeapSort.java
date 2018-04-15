@@ -9,14 +9,7 @@ class HeapSort {
 	// constructor for linked lists
 	public HeapSort(LinkedList<Integer> list) {
 		HeapSort.lis = list;
-		for (int i = 0; i < 5; i++) {
-			System.out.print(lis.get(i) + " ");
-		}
-		startSort(5);
-		for (int i = 0; i < 5; i++) {
-			System.out.print(lis.get(i) + " ");
-		}
-
+		startSort(list.size());
 	}
 
 	// constructor for arrays
