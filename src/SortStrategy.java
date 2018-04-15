@@ -1,52 +1,72 @@
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class SortStrategy {
-	public SortStrategy(String type, int length) {
-		switch (type) {
+	public SortStrategy(String type, String sortType) {
+		System.out.println(type + " " + sortType);
+		switch (sortType) {
 		case (Const.HEAP):
-			//new HeapSort();
+			switch (type) {
+			case Const.ARRAY:
+				new HeapSort(StructureFactory.getArray());
+				break;
+			case Const.MATRIX:
+				new HeapSort(StructureFactory.getMatrix());
+				break;
+			case Const.LIST:
+				new HeapSort(StructureFactory.getList());
+				break;
+			default:
+				break;
+			}
 			break;
 		case (Const.QUICK):
-			//new QuickSort();
+			// new QuickSort();
 			break;
 		case (Const.MERGE):
-			//new MergeSort();
+			// new MergeSort();
 			break;
 		default:
 			break;
 		}
 	}
-	
-	private class HeapSort{
-		//constructor for arrays and matrices
-		public HeapSort(ArrayList array) {
-			
+
+	public static int[] getSortedArray(String type) {
+		switch (type) {
+		case Const.HEAP:
+			return HeapSort.getArray();
+		case Const.MERGE:
+			// return MergeSort.getArray();
+		case Const.QUICK:
+			// return QuickSort.getArray();
+		default:
+			return null;
 		}
-		
-		//constructor for linked lists
-		public HeapSort(LinkedList list) {
-			
+	}
+
+	public static int[][] getSortedMatrix(String type) {
+		switch (type) {
+		case Const.HEAP:
+			return HeapSort.getMatrix();
+		case Const.MERGE:
+			// return MergeSort.getMatrix();
+		case Const.QUICK:
+			// return QuickSort.getMatrix();
+		default:
+			return null;
 		}
 	}
-	
-	private class QuickSort{
-		
+
+	public static LinkedList<Integer> getSortedList(String type) {
+		switch (type) {
+		case Const.HEAP:
+			return HeapSort.getList();
+		case Const.MERGE:
+			// return MergeSort.getList();
+		case Const.QUICK:
+			// return QuickSort.getList();
+		default:
+			return null;
+		}
 	}
-	
-	private class MergeSort{
-		
-	}
-	
-	private class DijkstraAlgo{
-		
-	}
-	
-	private class BellmanAlgo{
-		
-	}
-	
-	private class FloydAlgo{
-		
-	}
+
 }
