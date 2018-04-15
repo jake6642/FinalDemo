@@ -151,7 +151,6 @@ public class StructureFactory extends JPanel {
 					matrixBox[i][j].setText(String.valueOf(matrix[i][j]));
 				}
 			}
-			System.out.println("test");
 		}
 	}
 
