@@ -1,28 +1,32 @@
+package main;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Frame;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.PrintStream;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.BoxLayout;
 import javax.swing.JSplitPane;
-import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.Color;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import javax.swing.JTextArea;
+
+import factory.StructureFactory;
+import strategy.SortStrategy;
 
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
 	StructureFactory problem;
+	StructureFactory solution;
 	JSlider slideNum;
 	JButton btnHeap;
 	JButton btnQuick;
@@ -44,9 +48,17 @@ public class MainFrame extends JFrame {
 	JSplitPane splitPane;
 
 	public MainFrame() {
-		super("Algorithm Helper");
+		super("Sort It");
 		// initialize all the Frame contents and state
 		init();
+		//put our output to a console on the display
+		JTextArea consoleOut = new JTextArea();
+		consoleOut.setEditable(false);
+		consoleOut.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()/3));
+		panelMain.add(consoleOut, BorderLayout.SOUTH);
+		PrintStream con=new PrintStream(new TextAreaOutputStream(consoleOut));
+		System.setOut(con);
+		System.setErr(con);
 	}
 
 	private void buildProblem(String type) {
@@ -63,7 +75,7 @@ public class MainFrame extends JFrame {
 
 	private void buildSolution(String type, String sortType) {
 		panelSol.removeAll();
-		StructureFactory solution = new StructureFactory(type, len);
+		solution = new StructureFactory(type, len);
 		switch (type) {
 		case Const.ARRAY:
 			solution.setArray(SortStrategy.getSortedArray(sortType));
@@ -104,15 +116,15 @@ public class MainFrame extends JFrame {
 
 		// frame state: size and close operation
 		setSize(1200, 600);
-		panelMain.setLayout(new BoxLayout(panelMain, BoxLayout.X_AXIS));
 		getContentPane().add(panelMain);
+		panelMain.setLayout(new BorderLayout(0, 0));
 
 		splitPane = new JSplitPane();
 		splitPane.setDividerLocation(this.getWidth() / 2);
 		splitPane.setAlignmentY(Component.CENTER_ALIGNMENT);
 		splitPane.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		panelMain.add(splitPane);
+		panelMain.add(splitPane, BorderLayout.CENTER);
 		west = new JPanel();
 		east = new JPanel();
 
@@ -210,6 +222,8 @@ public class MainFrame extends JFrame {
 		gbc_panelSol.gridx = 0;
 		gbc_panelSol.gridy = 1;
 		east.add(panelSol, gbc_panelSol);
+
+		System.out.println("test");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}

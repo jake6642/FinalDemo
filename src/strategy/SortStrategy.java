@@ -1,8 +1,12 @@
+package strategy;
 import java.util.LinkedList;
+
+import factory.StructureFactory;
+import main.Const;
 
 public class SortStrategy {
 	public SortStrategy(String type, String sortType) {
-		System.out.println(type + " " + sortType);
+
 		switch (sortType) {
 		case (Const.HEAP):
 			switch (type) {

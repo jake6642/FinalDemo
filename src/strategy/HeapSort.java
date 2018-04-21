@@ -1,3 +1,4 @@
+package strategy;
 import java.util.LinkedList;
 
 class HeapSort {
