@@ -3,68 +3,54 @@ import java.awt.GridLayout;
 import java.util.LinkedList;
 import java.util.Random;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import main.Const;
+
+/* 
+ * Author: Jacob Collins
+ * Date: 04-10-2018
+ * 
+ * Purpose: This will serve as a factory for data structures.
+ * The user can select a data structure type from the MainFrame
+ * and this will manufacture the data structure for display. 
+ * 
+ * */
 
 @SuppressWarnings("serial")
 public class StructureFactory extends JPanel {
 
 	public GridLayout grid;
-	static Array array;
-	static List list;
-	static Matrix matrix;
+	static ArrayBuilder array;
+	static ListBuilder list;
+	static MatrixBuilder matrix;
 	static int length;
 
+	/* main constructor takes in the length of the data structure
+	 * and the type of structure to create. 
+	 * It then instantiates a new builder 
+	 */
 	public StructureFactory(String type, int length) {
 		StructureFactory.length = length;
 		grid = new GridLayout(1, 1, 5, 5);
 		setLayout(grid);
 		switch (type) {
 		case (Const.ARRAY):
-			array = new Array(length, this, grid);
+			array = new ArrayBuilder(length, this, grid);
 			break;
 		case (Const.MATRIX):
-			matrix = new Matrix(length, this, grid);
+			matrix = new MatrixBuilder(length, this, grid);
 			break;
 		case (Const.LIST):
-			list = new List(length, this, grid);
+			list = new ListBuilder(length, this, grid);
+			break;
 		default:
 			break;
 		}
-		initStructures(type, length);
 	}
 
-	public void initStructures(String type, int len) {
-		int[] arr = new int[len];
-		int[][] mat = new int[len][len];
-		LinkedList<Integer> lis = new LinkedList<Integer>();
-		for (int i = 0; i < arr.length; i++) {
-			Random rand = new Random();
-			arr[i] = rand.nextInt(100);
-			lis.add(rand.nextInt(100));
-			for (int j = 0; j < mat.length; j++) {
-				mat[i][j] = rand.nextInt(100);
-			}
-		}
-		switch (type) {
-		case Const.ARRAY:
-			array.set(arr);
-			array.update(len);
-			break;
-		case Const.MATRIX:
-			matrix.set(mat);
-			matrix.update(len);
-			break;
-		case Const.LIST:
-			list.set(lis);
-			list.update(len);
-		}
 
-	}
-
+	/* getters that will return the generated structure */
 	public static int[] getArray() {
 		return array.get();
 	}
@@ -77,6 +63,8 @@ public class StructureFactory extends JPanel {
 		return list.get();
 	}
 
+	/* setters allow the structures to be updated externally 
+	 * if need be */
 	public void setArray(int[] arr) {
 		array.set(arr);
 		array.update(length);

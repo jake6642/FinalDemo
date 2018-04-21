@@ -4,9 +4,20 @@ import java.util.LinkedList;
 import factory.StructureFactory;
 import main.Const;
 
+/* 
+ * Author: Jacob Collins
+ * Date: 04-10-2018
+ * 
+ * Purpose: This will serve as the "factory" for strategies. 
+ * It will work as a Strategy Method to ensure that the data
+ * type that is passed in is sorted using the algorithm that
+ * was requested by the user.  
+ * 
+ * */
+
 public class SortStrategy {
 	public SortStrategy(String type, String sortType) {
-
+		//instantiate the algorithm that is desired
 		switch (sortType) {
 		case (Const.HEAP):
 			switch (type) {
@@ -58,6 +69,7 @@ public class SortStrategy {
 		}
 	}
 
+	//getters that will return the sorted data structures
 	public static int[] getSortedArray(String type) {
 		switch (type) {
 		case Const.HEAP:

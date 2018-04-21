@@ -5,3 +5,6 @@
 /Array.class
 /Matrix.class
 /List.class
+/ArrayBuilder.class
+/MatrixBuilder.class
+/ListBuilder.class
