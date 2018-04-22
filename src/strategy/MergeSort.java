@@ -125,7 +125,7 @@ public class MergeSort {
 	}
 
 	public void printResults(int[] array) {
-		System.out.print("\n");
+		System.out.print("\nSorted Result = ");
 		for (int i = 0; i < array.length; i++) {
 			System.out.print(array[i] + " ");
 		}

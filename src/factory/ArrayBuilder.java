@@ -6,6 +6,8 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.MainFrame;
+
 /* Array class will build an array for display 
  * if the factory instantiates it */
 class ArrayBuilder {
@@ -41,6 +43,7 @@ class ArrayBuilder {
 	public void update(int length) {
 		for (int i = 0; i < length; i++) {
 			arrayBox[i].setText(String.valueOf(array[i]));
+			arrayBox[i].setFont(MainFrame.mono);
 		}
 	}
 

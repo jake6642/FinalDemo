@@ -2,6 +2,8 @@ package main;
 
 public class Const {
 
+	public static final String TITLE = "Sort It";
+	
 	public static final String 
 		ARRAY = "Array",
 		MATRIX = "Matrix",

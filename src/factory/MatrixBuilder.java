@@ -6,6 +6,8 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.MainFrame;
+
 /* Matrix class will build a matrix for display 
  * if the factory instantiates it */
 class MatrixBuilder {
@@ -25,6 +27,7 @@ class MatrixBuilder {
 			for (int j = 0; j < length; j++) {
 				panel.add(matrixBox[i][j] = new JTextField(String.valueOf(matrix[i][j]), 3));
 				matrixBox[i][j].setEditable(false);
+				matrixBox[i][j].setFont(MainFrame.mono);
 			}
 		}
 

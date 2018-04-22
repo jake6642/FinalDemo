@@ -11,31 +11,52 @@ public class QuickSort {
 	static int[][] mat;
 	static int[] array;
 	Adapter adapter = new Adapter();
+	static int parts = 0;
+	static int sorts = 0;
+	static int swaps = 0;
 
 	// constructor for arrays
 	public QuickSort(int[] array) {
+		parts = 0;
+		sorts = 0;
+		swaps = 0;
 		sort(array, 0, array.length - 1);
+		printResults();
 		setArray(array);
 	}
 
 	// constructor for matrices
 	public QuickSort(int[][] matrix) {
+		parts = 0;
+		sorts = 0;
+		swaps = 0;
 		// convert to array
 		array = adapter.toArray(matrix);
 		// sort it
 		sort(array, 0, array.length - 1);
+		printResults();
 		// convert back to matrix
 		setMatrix(adapter.toMatrix(array));
 	}
 
 	// constructor for linked lists
 	public QuickSort(LinkedList<Integer> list) {
+		parts = 0;
+		sorts = 0;
+		swaps = 0;
 		// convert to array
 		array = adapter.toArray(list);
 		// sort it
 		sort(array, 0, array.length - 1);
+		printResults();
 		// convert back to list
 		setList(adapter.toList(array));
+	}
+
+	private void printResults() {
+		System.out.print("-------------\nResults:\n");
+		System.out.print("    " + swaps + " Swaps\n");
+		System.out.print("    " + sorts + " Sorts\n");
 	}
 
 	/*
@@ -44,6 +65,7 @@ public class QuickSort {
 	 * to left of pivot and all greater elements to right of pivot
 	 */
 	int partition(int arr[], int low, int high) {
+		parts++;
 		int pivot = arr[high];
 		int i = (low - 1); // index of smaller element
 		for (int j = low; j < high; j++) {
@@ -53,18 +75,29 @@ public class QuickSort {
 				i++;
 
 				// swap arr[i] and arr[j]
-				int temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
+				swap(arr, i, j);
 			}
 		}
 
 		// swap arr[i+1] and arr[high] (or pivot)
-		int temp = arr[i + 1];
-		arr[i + 1] = arr[high];
-		arr[high] = temp;
-
+		swap(arr, i + 1, high);
 		return i + 1;
+	}
+
+	private void swap(int[] arr, int i, int j) {
+		swaps++;
+		System.out.print("    Swapping index " + i + " and " + j + "\n");
+		int tmp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = tmp;
+
+		for (int m = 0; m < arr.length; m++) {
+			if (m == i || m == j)
+				System.out.print("[" + arr[m] + "] ");
+			else
+				System.out.print(arr[m] + " ");
+		}
+		System.out.println("");
 	}
 
 	/*
@@ -72,16 +105,18 @@ public class QuickSort {
 	 * low --> Starting index, high --> Ending index
 	 */
 	void sort(int arr[], int low, int high) {
+		sorts++;
+		System.out.print("    Sorting " + low + " and " + high + "\n");
 		if (low < high) {
 			/*
 			 * pi is partitioning index, arr[pi] is now at right place
 			 */
-			int pi = partition(arr, low, high);
+			int pivot = partition(arr, low, high);
 
 			// Recursively sort elements before
 			// partition and after partition
-			sort(arr, low, pi - 1);
-			sort(arr, pi + 1, high);
+			sort(arr, low, pivot - 1);
+			sort(arr, pivot + 1, high);
 		}
 	}
 

@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.MainFrame;
+
 /* List class will build a linked lists for display 
  * if the factory instantiates it */
 class ListBuilder {
@@ -50,6 +52,7 @@ class ListBuilder {
 	public void update(int length) {
 		for (int i = 0; i < length; i++) {
 			listBox[i].setText(String.valueOf(list.get(i)));
+			listBox[i].setFont(MainFrame.mono);
 		}
 	}
 
@@ -57,7 +60,7 @@ class ListBuilder {
 	public void randomFill(int length) {
 		Random rand = new Random();
 		LinkedList<Integer> lis = new LinkedList<Integer>();
-		for (int i = 0; i <= length; i++) {
+		for (int i = 0; i < length; i++) {
 			int value = rand.nextInt(100);
 			lis.add(value);
 		}
