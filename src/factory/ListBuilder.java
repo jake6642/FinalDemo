@@ -19,7 +19,6 @@ class ListBuilder {
 		//instantiate
 		list = new LinkedList<Integer>();
 		listBox = new JTextField[length];
-
 		//update the grid
 		grid.setColumns(length);
 		grid.setRows(1);

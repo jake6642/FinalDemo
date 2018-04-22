@@ -1,8 +1,10 @@
 package main;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -14,6 +16,7 @@ import java.util.LinkedList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
@@ -51,12 +54,17 @@ public class MainFrame extends JFrame {
 		super("Sort It");
 		// initialize all the Frame contents and state
 		init();
-		//put our output to a console on the display
+		// put our output to a console on the display
 		JTextArea consoleOut = new JTextArea();
 		consoleOut.setEditable(false);
-		consoleOut.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()/3));
-		panelMain.add(consoleOut, BorderLayout.SOUTH);
-		PrintStream con=new PrintStream(new TextAreaOutputStream(consoleOut));
+		consoleOut.setFont(new Font(Font.MONOSPACED, Font.PLAIN , 13));
+		// consoleOut.setPreferredSize(new Dimension(this.getWidth(),
+		// this.getHeight()/3));
+		JScrollPane scroller = new JScrollPane(consoleOut);
+		scroller.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() / 3));
+		scroller.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		panelMain.add(scroller, BorderLayout.SOUTH);
+		PrintStream con = new PrintStream(new TextAreaOutputStream(consoleOut));
 		System.setOut(con);
 		System.setErr(con);
 	}
@@ -101,6 +109,7 @@ public class MainFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TYPE = e.getActionCommand();
+				System.out.print("----------------\nBuilding " + TYPE + "\n\n");
 				buildProblem(TYPE);
 			}
 		};
@@ -109,6 +118,7 @@ public class MainFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+				System.out.print("----------------\nSorintg " + TYPE + " with " + e.getActionCommand() + "\n\n");
 				new SortStrategy(TYPE, e.getActionCommand());
 				buildSolution(TYPE, e.getActionCommand());
 			}
@@ -223,7 +233,7 @@ public class MainFrame extends JFrame {
 		gbc_panelSol.gridy = 1;
 		east.add(panelSol, gbc_panelSol);
 
-		System.out.println("test");
+		System.out.println("Starting \"Sort It\"");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}

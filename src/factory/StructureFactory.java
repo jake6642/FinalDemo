@@ -35,7 +35,7 @@ public class StructureFactory extends JPanel {
 		grid = new GridLayout(1, 1, 5, 5);
 		setLayout(grid);
 		switch (type) {
-		case (Const.ARRAY):
+		case (Const.ARRAY):			
 			array = new ArrayBuilder(length, this, grid);
 			break;
 		case (Const.MATRIX):

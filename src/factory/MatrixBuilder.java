@@ -17,6 +17,7 @@ class MatrixBuilder {
 		// instantiate
 		matrix = new int[length][length];
 		matrixBox = new JTextField[length][length];
+		
 		// update the grid
 		grid.setColumns(length);
 		grid.setRows(length);
