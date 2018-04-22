@@ -10,42 +10,54 @@ public class MergeSort {
 	static int[] arr;
 	static int[][] mat;
 	Adapter adapter = new Adapter();
+	static int merges = 0;
+	static int sorts = 0;
 
 	// constructor for arrays
 	public MergeSort(int[] array) {
-		MergeSort.arr = array;
+		setArray(array);
+		merges = 0;
+		sorts = 0;
 		sort(arr, 0, arr.length - 1);
+		printResults(array);
 	}
 
 	// constructor for matrices
 	public MergeSort(int[][] matrix) {
-		MergeSort.mat = matrix;
-		int len = mat.length * mat.length;
+		setMatrix(matrix);
+		merges = 0;
+		sorts = 0;
+		//convert to array
 		int[] array = adapter.toArray(matrix);
-
-		sort(array, 0, len - 1);
-
-		mat = adapter.toMatrix(array);
+		//sort the array
+		sort(array, 0, array.length- 1);
+		printResults(array);
+		//convert back to matrix
+		setMatrix(adapter.toMatrix(array));
 	}
 
 	// constructor for linked lists
 	public MergeSort(LinkedList<Integer> list) {
-		MergeSort.lis = list;
+		setList(list);
+		merges = 0;
+		sorts = 0;
 		// convert to array
 		int[] array = adapter.toArray(list);
 		// sort the array
 		sort(array, 0, array.length - 1);
+		printResults(array);
 		// turn it back into a list
-		lis = adapter.toList(array);
+		setList(adapter.toList(array));
 	}
 
 	// Main function that sorts arr[l..r] using
 	// merge()
 	void sort(int arr[], int l, int r) {
+		System.out.print("\nSorting... "+l+" and "+r+"\n");
+		sorts++;
 		if (l < r) {
 			// Find the middle point
 			int m = (l + r) / 2;
-
 			// Sort first and second halves
 			sort(arr, l, m);
 			sort(arr, m + 1, r);
@@ -59,6 +71,7 @@ public class MergeSort {
 	// First subarray is arr[l..m]
 	// Second subarray is arr[m+1..r]
 	void merge(int arr[], int l, int m, int r) {
+		merges++;
 		// Find sizes of two subarrays to be merged
 		int tempSize1 = m - l + 1;
 		int tempSize2 = r - m;
@@ -66,12 +79,20 @@ public class MergeSort {
 		/* Create temp arrays */
 		int L[] = new int[tempSize1];
 		int R[] = new int[tempSize2];
-
+		
+		System.out.print("\nMerging");
 		/* Copy data to temp arrays */
-		for (int i = 0; i < tempSize1; ++i)
+		System.out.print("\n    L: ");
+		for (int i = 0; i < tempSize1; ++i) {
 			L[i] = arr[l + i];
-		for (int j = 0; j < tempSize2; ++j)
+			System.out.print(L[i] + " ");
+		}
+		System.out.print("\n    and");
+		System.out.print("\n    R: ");
+		for (int j = 0; j < tempSize2; ++j) {
 			R[j] = arr[m + 1 + j];
+			System.out.print(R[j] + " ");
+		}
 
 		/* Merge the temp arrays */
 
@@ -104,6 +125,16 @@ public class MergeSort {
 		}
 	}
 
+	public void printResults(int[] array) {
+		System.out.print("\n");
+		for (int i = 0; i < array.length; i++) {
+			System.out.print(array[i] + " ");
+		}
+		System.out.print("\n");
+		System.out.println("-------------\nResults:");
+		System.out.print("    "+sorts+" Sorts\n    "+merges+" Merges\n");
+	}
+	
 	/* getter methods */
 	public static LinkedList<Integer> getList() {
 		return lis;
@@ -115,5 +146,16 @@ public class MergeSort {
 
 	public static int[][] getMatrix() {
 		return mat;
+	}
+	
+	/*Setter methods*/
+	public void setList(LinkedList<Integer> list) {
+		MergeSort.lis = list;
+	}
+	public void setArray(int[] array) {
+		MergeSort.arr = array;
+	}
+	public void setMatrix(int[][] matrix) {
+		MergeSort.mat = matrix;
 	}
 }
