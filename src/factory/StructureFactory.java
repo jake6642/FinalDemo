@@ -1,7 +1,7 @@
 package factory;
+
 import java.awt.GridLayout;
 import java.util.LinkedList;
-import java.util.Random;
 
 import javax.swing.JPanel;
 
@@ -26,16 +26,16 @@ public class StructureFactory extends JPanel {
 	static MatrixBuilder matrix;
 	static int length;
 
-	/* main constructor takes in the length of the data structure
-	 * and the type of structure to create. 
-	 * It then instantiates a new builder 
+	/*
+	 * main constructor takes in the length of the data structure and the type of
+	 * structure to create. It then instantiates a new builder
 	 */
 	public StructureFactory(String type, int length) {
 		StructureFactory.length = length;
 		grid = new GridLayout(1, 1, 5, 5);
 		setLayout(grid);
 		switch (type) {
-		case (Const.ARRAY):			
+		case (Const.ARRAY):
 			array = new ArrayBuilder(length, this, grid);
 			break;
 		case (Const.MATRIX):
@@ -48,7 +48,6 @@ public class StructureFactory extends JPanel {
 			break;
 		}
 	}
-
 
 	/* getters that will return the generated structure */
 	public static int[] getArray() {
@@ -63,8 +62,9 @@ public class StructureFactory extends JPanel {
 		return list.get();
 	}
 
-	/* setters allow the structures to be updated externally 
-	 * if need be */
+	/*
+	 * setters allow the structures to be updated externally if need be
+	 */
 	public void setArray(int[] arr) {
 		array.set(arr);
 		array.update(length);

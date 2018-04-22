@@ -1,4 +1,5 @@
 package strategy;
+
 import java.util.LinkedList;
 
 import factory.StructureFactory;
@@ -17,7 +18,7 @@ import main.Const;
 
 public class SortStrategy {
 	public SortStrategy(String type, String sortType) {
-		//instantiate the algorithm that is desired
+		// instantiate the algorithm that is desired
 		switch (sortType) {
 		case (Const.HEAP):
 			switch (type) {
@@ -69,7 +70,7 @@ public class SortStrategy {
 		}
 	}
 
-	//getters that will return the sorted data structures
+	// getters that will return the sorted data structures
 	public static int[] getSortedArray(String type) {
 		switch (type) {
 		case Const.HEAP:

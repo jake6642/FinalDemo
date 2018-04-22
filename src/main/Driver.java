@@ -7,9 +7,9 @@ package main;
 public class Driver {
 
 	public static void main(String[] args) {
-		//create a new frame
+		// create a new frame
 		MainFrame frame = new MainFrame();
-		frame.setVisible( true );
+		frame.setVisible(true);
 	}
 
 }

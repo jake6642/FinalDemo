@@ -11,15 +11,15 @@ import javax.swing.JTextField;
 /* List class will build a linked lists for display 
  * if the factory instantiates it */
 class ListBuilder {
-	//create
+	// create
 	LinkedList<Integer> list;
 	JTextField[] listBox;
 
 	public ListBuilder(int length, JPanel panel, GridLayout grid) {
-		//instantiate
+		// instantiate
 		list = new LinkedList<Integer>();
 		listBox = new JTextField[length];
-		//update the grid
+		// update the grid
 		grid.setColumns(length);
 		grid.setRows(1);
 		grid.setHgap(0);
@@ -32,13 +32,13 @@ class ListBuilder {
 			panel.add(new JLabel("=>"));
 		}
 		panel.add(new JLabel("null"));
-		
+
 		// initialize the list
 		/* This will insert random variables into the list */
 		randomFill(length);
 	}
 
-	//get/set/update
+	// get/set/update
 	public LinkedList<Integer> get() {
 		return list;
 	}
@@ -52,8 +52,8 @@ class ListBuilder {
 			listBox[i].setText(String.valueOf(list.get(i)));
 		}
 	}
-	
-	//fill the list with random numbers
+
+	// fill the list with random numbers
 	public void randomFill(int length) {
 		Random rand = new Random();
 		LinkedList<Integer> lis = new LinkedList<Integer>();

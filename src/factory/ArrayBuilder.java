@@ -9,23 +9,23 @@ import javax.swing.JTextField;
 /* Array class will build an array for display 
  * if the factory instantiates it */
 class ArrayBuilder {
-	//create
+	// create
 	int[] array;
 	JTextField[] arrayBox;
 
 	public ArrayBuilder(int length, JPanel panel, GridLayout grid) {
-		//instantiate
+		// instantiate
 		array = new int[length];
 		arrayBox = new JTextField[length];
-		//update the grid
+		// update the grid
 		grid.setColumns(length);
 		grid.setRows(1);
 		for (int i = 0; i < length; i++) {
 			panel.add(arrayBox[i] = new JTextField(String.valueOf(array[i]), 3));
 			arrayBox[i].setEditable(false);
 		}
-		
-		//fill with random numbers
+
+		// fill with random numbers
 		randomFill(length);
 	}
 
@@ -43,8 +43,8 @@ class ArrayBuilder {
 			arrayBox[i].setText(String.valueOf(array[i]));
 		}
 	}
-	
-	//enters random numbers into the array
+
+	// enters random numbers into the array
 	public void randomFill(int length) {
 		Random rand = new Random();
 		int[] arr = new int[length];

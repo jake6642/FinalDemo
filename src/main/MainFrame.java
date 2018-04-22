@@ -57,7 +57,7 @@ public class MainFrame extends JFrame {
 		// put our output to a console on the display
 		JTextArea consoleOut = new JTextArea();
 		consoleOut.setEditable(false);
-		consoleOut.setFont(new Font(Font.MONOSPACED, Font.PLAIN , 13));
+		consoleOut.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 13));
 		// consoleOut.setPreferredSize(new Dimension(this.getWidth(),
 		// this.getHeight()/3));
 		JScrollPane scroller = new JScrollPane(consoleOut);

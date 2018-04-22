@@ -12,37 +12,36 @@ public class MergeSort {
 	Adapter adapter = new Adapter();
 	static int merges = 0;
 	static int sorts = 0;
+	int[] array;
 
 	// constructor for arrays
 	public MergeSort(int[] array) {
-		setArray(array);
 		merges = 0;
 		sorts = 0;
-		sort(arr, 0, arr.length - 1);
+		sort(array, 0, array.length - 1);
+		setArray(array);
 		printResults(array);
 	}
 
 	// constructor for matrices
 	public MergeSort(int[][] matrix) {
-		setMatrix(matrix);
 		merges = 0;
 		sorts = 0;
-		//convert to array
-		int[] array = adapter.toArray(matrix);
-		//sort the array
-		sort(array, 0, array.length- 1);
+		// convert to array
+		array = adapter.toArray(matrix);
+		// sort the array
+		sort(array, 0, array.length - 1);
 		printResults(array);
-		//convert back to matrix
+		// convert back to matrix
 		setMatrix(adapter.toMatrix(array));
 	}
 
 	// constructor for linked lists
 	public MergeSort(LinkedList<Integer> list) {
-		setList(list);
 		merges = 0;
 		sorts = 0;
 		// convert to array
-		int[] array = adapter.toArray(list);
+		array = adapter.toArray(list);
 		// sort the array
 		sort(array, 0, array.length - 1);
 		printResults(array);
@@ -53,7 +52,7 @@ public class MergeSort {
 	// Main function that sorts arr[l..r] using
 	// merge()
 	void sort(int arr[], int l, int r) {
-		System.out.print("\nSorting... "+l+" and "+r+"\n");
+		System.out.print("\nSorting... " + l + " and " + r + "\n");
 		sorts++;
 		if (l < r) {
 			// Find the middle point
@@ -79,7 +78,7 @@ public class MergeSort {
 		/* Create temp arrays */
 		int L[] = new int[tempSize1];
 		int R[] = new int[tempSize2];
-		
+
 		System.out.print("\nMerging");
 		/* Copy data to temp arrays */
 		System.out.print("\n    L: ");
@@ -132,9 +131,9 @@ public class MergeSort {
 		}
 		System.out.print("\n");
 		System.out.println("-------------\nResults:");
-		System.out.print("    "+sorts+" Sorts\n    "+merges+" Merges\n");
+		System.out.print("    " + sorts + " Sorts\n    " + merges + " Merges\n");
 	}
-	
+
 	/* getter methods */
 	public static LinkedList<Integer> getList() {
 		return lis;
@@ -147,14 +146,16 @@ public class MergeSort {
 	public static int[][] getMatrix() {
 		return mat;
 	}
-	
-	/*Setter methods*/
+
+	/* Setter methods */
 	public void setList(LinkedList<Integer> list) {
 		MergeSort.lis = list;
 	}
+
 	public void setArray(int[] array) {
 		MergeSort.arr = array;
 	}
+
 	public void setMatrix(int[][] matrix) {
 		MergeSort.mat = matrix;
 	}

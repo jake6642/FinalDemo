@@ -1,5 +1,8 @@
 package strategy;
+
 import java.util.LinkedList;
+
+import main.Adapter;
 
 class HeapSort {
 
@@ -8,10 +11,11 @@ class HeapSort {
 	static int[][] mat;
 	static int swapCount = 0;
 	static int heapifyCount = 0;
+	Adapter adapter = new Adapter();
 
 	// constructor for linked lists
 	public HeapSort(LinkedList<Integer> list) {
-		HeapSort.lis = list;
+		setList(list);
 		heapifyCount = 0;
 		swapCount = 0;
 		startSort(list.size());
@@ -22,7 +26,7 @@ class HeapSort {
 	public HeapSort(int[] array) {
 
 		int n = array.length;
-		arr = array;
+		setArray(array);
 		printArr();
 		heapifyCount = 0;
 		swapCount = 0;
@@ -46,32 +50,21 @@ class HeapSort {
 	// constructor for matrices
 	public HeapSort(int[][] matrix) {
 
-		int[] array = new int[matrix.length * matrix.length];
-		int k = 0;
-		for (int i = 0; i < matrix.length; i++) {
-			for (int j = 0; j < matrix.length; j++) {
-				array[k] = matrix[i][j];
-				k++;
-			}
-		}
+		// convert to array
+		int[] array = adapter.toArray(matrix);
+		// heapsort it
 		new HeapSort(array);
-		k = 0;
-		for (int i = 0; i < matrix.length; i++) {
-			for (int j = 0; j < matrix.length; j++) {
-				matrix[i][j] = array[k];
-				k++;
-			}
-		}
-		mat = matrix;
+		// convert back to matrix
+		setMatrix(adapter.toMatrix(array));
 	}
-	
+
 	void printArr() {
 		for (int i = 0; i < arr.length; i++) {
 			System.out.print(arr[i] + " ");
 		}
 		System.out.println("");
 	}
-	
+
 	void printList() {
 		System.out.print("null->");
 		for (int i = 0; i < lis.size(); i++) {
@@ -79,11 +72,10 @@ class HeapSort {
 		}
 		System.out.print("null\n");
 	}
-	
+
 	void printResults() {
 		System.out.println("------------------------------------------");
-		System.out.println("Results:\n    " + heapifyCount + " Heapifications\n    " 
-				+ swapCount + " Swaps");
+		System.out.println("Results:\n    " + heapifyCount + " Heapifications\n    " + swapCount + " Swaps");
 	}
 
 	// To heapify a subtree rooted with node i which is
@@ -96,7 +88,7 @@ class HeapSort {
 		System.out.println("Heapify");
 
 		// If left child is larger than root
-		if (l < n && arr[l] > arr[largest]){
+		if (l < n && arr[l] > arr[largest]) {
 			largest = l;
 		}
 
@@ -152,15 +144,14 @@ class HeapSort {
 		System.out.print("null->");
 		for (int m = 0; m < lis.size(); m++) {
 			if (m == i || m == j) {
-				System.out.print("("+lis.get(m)+")->");
-			}
-			else
+				System.out.print("(" + lis.get(m) + ")->");
+			} else
 				System.out.print(lis.get(m) + "->");
 		}
 		System.out.print("null\n");
 		swapCount++;
 	}
-	
+
 	public void swapArr(int i, int j) {
 		System.out.println("    Swap " + arr[i] + " and " + arr[j]);
 		int tmp = arr[i];
@@ -168,11 +159,10 @@ class HeapSort {
 		arr[j] = tmp;
 		for (int m = 0; m < arr.length; m++) {
 			if (m == i || m == j) {
-				System.out.print("["+arr[m]+"] ");
-			}
-			else
+				System.out.print("[" + arr[m] + "] ");
+			} else
 				System.out.print(arr[m] + " ");
-				
+
 		}
 		System.out.println("");
 		swapCount++;
@@ -189,5 +179,18 @@ class HeapSort {
 
 	public static int[][] getMatrix() {
 		return mat;
+	}
+
+	/* Setter methods */
+	public void setList(LinkedList<Integer> list) {
+		HeapSort.lis = list;
+	}
+
+	public void setArray(int[] array) {
+		HeapSort.arr = array;
+	}
+
+	public void setMatrix(int[][] matrix) {
+		HeapSort.mat = matrix;
 	}
 }
